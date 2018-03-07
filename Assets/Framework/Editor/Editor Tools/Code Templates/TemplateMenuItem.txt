@@ -1,0 +1,8 @@
+
+		[MenuItem (MENU_ITEM_PATH + "##TEMPLATE##", false, MENU_ITEM_PRIORITY)]
+		private static void Create##TEMPLATE##()
+		{
+		    CodeTemplates.CreateFromTemplate (
+				"##TEMPLATE##.cs",
+				CodeTemplates.CODE_TEMPLATES_ROOT + "Templates/New##TEMPLATE##.txt");
+		}

@@ -1,0 +1,9 @@
+// Author:			#DEVELOPERNAME#
+// Creation Date:	#CREATIONDATE#
+
+using UnityEngine;
+
+public class #SCRIPTNAME# : MonoBehaviour
+{
+
+}

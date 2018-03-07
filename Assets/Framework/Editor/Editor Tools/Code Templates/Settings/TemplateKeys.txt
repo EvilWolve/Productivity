@@ -1,0 +1,10 @@
+#CREATIONDATE#
+[Time]
+#PROJECTNAME#
+[PlayerSettings.productName]
+#DEVELOPERNAME#
+Wolfgang Neumayer
+#COMPANY#
+[PlayerSettings.companyName]
+#NAMESPACE#
+MyNamespace

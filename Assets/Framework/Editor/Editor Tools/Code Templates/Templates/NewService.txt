@@ -1,0 +1,12 @@
+// Author:			#DEVELOPERNAME#
+// Creation Date:	#CREATIONDATE#
+
+public interface I#SCRIPTNAME#
+{
+
+}
+
+public class #SCRIPTNAME# : I#SCRIPTNAME#
+{
+
+}
