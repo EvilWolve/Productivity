@@ -3,7 +3,7 @@
 
 using UnityEngine;
 
-public class #SCRIPTNAME# : MonoBehaviour
+public class ##NAME## : MonoBehaviour
 {
 
 }

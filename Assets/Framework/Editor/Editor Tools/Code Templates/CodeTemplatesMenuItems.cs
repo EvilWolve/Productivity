@@ -7,28 +7,28 @@ namespace framework.codetemplates
         private const string MENU_ITEM_PATH = "Assets/Create/";
         private const int MENU_ITEM_PRIORITY = 70;
 
-		[MenuItem (MENU_ITEM_PATH + "NewMonoBehaviour", false, MENU_ITEM_PRIORITY)]
-		private static void CreateNewMonoBehaviour()
+		[MenuItem (MENU_ITEM_PATH + "MonoBehaviour", false, MENU_ITEM_PRIORITY)]
+		private static void CreateNewMonoBehaviourTemplate()
 		{
 		    CodeTemplates.CreateFromTemplate (
 				"NewMonoBehaviour.cs",
-				CodeTemplates.CODE_TEMPLATES_ROOT + "Templates/NewNewMonoBehaviour.txt");
+				CodeTemplates.CODE_TEMPLATES_ROOT + "Templates/NewMonoBehaviourTemplate.txt");
 		}
 
-		[MenuItem (MENU_ITEM_PATH + "NewService", false, MENU_ITEM_PRIORITY)]
-		private static void CreateNewService()
+		[MenuItem (MENU_ITEM_PATH + "Service", false, MENU_ITEM_PRIORITY)]
+		private static void CreateNewServiceTemplate()
 		{
 		    CodeTemplates.CreateFromTemplate (
 				"NewService.cs",
-				CodeTemplates.CODE_TEMPLATES_ROOT + "Templates/NewNewService.txt");
+				CodeTemplates.CODE_TEMPLATES_ROOT + "Templates/NewServiceTemplate.txt");
 		}
 
-		[MenuItem (MENU_ITEM_PATH + "NewUnitTest", false, MENU_ITEM_PRIORITY)]
-		private static void CreateNewUnitTest()
+		[MenuItem (MENU_ITEM_PATH + "UnitTest", false, MENU_ITEM_PRIORITY)]
+		private static void CreateNewUnitTestTemplate()
 		{
 		    CodeTemplates.CreateFromTemplate (
 				"NewUnitTest.cs",
-				CodeTemplates.CODE_TEMPLATES_ROOT + "Templates/NewNewUnitTest.txt");
+				CodeTemplates.CODE_TEMPLATES_ROOT + "Templates/NewUnitTestTemplate.txt");
 		}
 
     }

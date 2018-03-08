@@ -43,7 +43,8 @@ namespace framework.codetemplates
             
             for (int i = 0; i < nodes.Length; i++)
             {
-                var t = templateNode.Replace ("##NAME##", nodes[i].MenuItemName).Replace ("##TEMPLATE##", nodes[i].TemplateName);
+                var t = templateNode.Replace ("##MENUITEM##", nodes[i].MenuItemName);
+                t = t.Replace ("##TEMPLATE##", nodes[i].TemplateName);
 
                 completeCode += t;
             }
@@ -68,6 +69,8 @@ namespace framework.codetemplates
                 FileInfo info = new FileInfo (fileEntries[i]);
                 string templateName = info.Name.Substring (0, info.Name.IndexOf ('.'));
                 string menuItemName = templateName.Replace ("Template", string.Empty);
+                menuItemName = menuItemName.Replace ("New", string.Empty);
+
                 nodes[i] = new AssetNode (menuItemName, templateName);
             }
 

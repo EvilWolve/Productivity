@@ -32,7 +32,6 @@ namespace framework.codetemplates
             {
                 using (var t = new StreamReader (templatePath))
                 {
-                    t.ReadLine ();
                     templateContents = t.ReadToEnd ();
                 }
 

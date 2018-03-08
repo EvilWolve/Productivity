@@ -1,5 +1,7 @@
 #CREATIONDATE#
 [Time]
+#CREATIONTIME#
+[TimeExact]
 #PROJECTNAME#
 [PlayerSettings.productName]
 #DEVELOPERNAME#
