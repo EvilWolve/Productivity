@@ -3,26 +3,28 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Simple script that lets you localise a UGUI text.
-/// </summary>
-
-[ExecuteInEditMode]
-[RequireComponent(typeof(Text))]
-public class LocalisedTextUGUI : BaseLocalisedText
+namespace framework.localisation
 {
-    Text cachedText;
-
-    protected override void UpdateText(string value)
+    /// <summary>
+    /// Simple script that lets you localise a UGUI text.
+    /// </summary>
+    [ExecuteInEditMode]
+    [RequireComponent (typeof (Text))]
+    public class LocalisedTextUGUI : BaseLocalisedText
     {
-        if (this.cachedText == null)
-        {
-            this.cachedText = this.GetComponent<Text> ();
-        }
+        Text cachedText;
 
-        if (this.cachedText != null)
+        protected override void UpdateText(string value)
         {
-            this.cachedText.text = value;
+            if (this.cachedText == null)
+            {
+                this.cachedText = this.GetComponent<Text> ();
+            }
+
+            if (this.cachedText != null)
+            {
+                this.cachedText.text = value;
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace framework.codetemplates
+namespace framework.editor.codetemplates
 {
     public class CodeTemplatesPostProcess : AssetPostprocessor
     {

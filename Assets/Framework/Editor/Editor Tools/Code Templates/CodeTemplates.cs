@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
 
-namespace framework.codetemplates
+namespace framework.editor.codetemplates
 {
     public class CreateCodeFile : EndNameEditAction
     {

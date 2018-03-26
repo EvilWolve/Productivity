@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace framework.codetemplates
+namespace framework.editor.codetemplates
 {
     public class CodeTemplatesMenuItems
     {

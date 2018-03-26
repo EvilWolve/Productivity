@@ -14,7 +14,7 @@ using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
 
-namespace framework.codetemplates
+namespace framework.editor.codetemplates
 {
     internal sealed class ScriptKeywordProcessor : UnityEditor.AssetModificationProcessor
     {

@@ -3,26 +3,28 @@
 using UnityEngine;
 using TMPro;
 
-/// <summary>
-/// Simple script that lets you localise a TextMeshPro UGUI text.
-/// </summary>
-
-[ExecuteInEditMode]
-[RequireComponent (typeof (TextMeshProUGUI))]
-public class LocalisedTextTMProUGUI : BaseLocalisedText
+namespace framework.localisation
 {
-    TextMeshProUGUI cachedText;
-
-    protected override void UpdateText(string value)
+    /// <summary>
+    /// Simple script that lets you localise a TextMeshPro UGUI text.
+    /// </summary>
+    [ExecuteInEditMode]
+    [RequireComponent (typeof (TextMeshProUGUI))]
+    public class LocalisedTextTMProUGUI : BaseLocalisedText
     {
-        if (this.cachedText == null)
-        {
-            this.cachedText = this.GetComponent<TextMeshProUGUI> ();
-        }
+        TextMeshProUGUI cachedText;
 
-        if (this.cachedText != null)
+        protected override void UpdateText(string value)
         {
-            this.cachedText.text = value;
+            if (this.cachedText == null)
+            {
+                this.cachedText = this.GetComponent<TextMeshProUGUI> ();
+            }
+
+            if (this.cachedText != null)
+            {
+                this.cachedText.text = value;
+            }
         }
     }
 }
