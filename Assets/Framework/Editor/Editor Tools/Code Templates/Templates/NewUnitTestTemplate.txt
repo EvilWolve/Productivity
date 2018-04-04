@@ -1,12 +1,10 @@
 // Author:			#DEVELOPERNAME#
 // Creation Date:	#CREATIONDATE#
 
-using UnityEngine.TestTools;
 using NUnit.Framework;
-using System.Collections;
 
-public class ##NAME## {
-
+public class ##NAME##
+{
 	[Test]
 	public void NewEditModeTestSimplePasses()
 	{
