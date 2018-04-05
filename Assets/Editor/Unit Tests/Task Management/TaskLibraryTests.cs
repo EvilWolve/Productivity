@@ -12,12 +12,12 @@ using framework.id;
 
 namespace testing.game.taskmanagement
 {
-    public class TaskLibraryTests
+    public class TaskLibraryTests : BaseTest
     {
         ITaskLibrary taskLibrary;
 
         [SetUp]
-        public void Setup()
+        public new void Setup()
         {
             this.taskLibrary = new TaskLibrary ();
         }

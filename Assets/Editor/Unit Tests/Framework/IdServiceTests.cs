@@ -7,7 +7,7 @@ using framework.id;
 
 namespace testing.framework.id
 {
-    public class TaskIdServiceTests
+    public class IdServiceTests : BaseTest
     {
         [Test]
         public void GenerateNewId()
