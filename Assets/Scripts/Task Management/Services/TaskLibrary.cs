@@ -3,11 +3,10 @@
 
 using System.Collections.Generic;
 
-using UnityEngine.Assertions;
-
 namespace game.taskmanagement.services
 {
     using framework.id;
+    using framework.errorhandling;
     using game.taskmanagement.data;
 
     public interface ITaskLibrary
@@ -36,7 +35,7 @@ namespace game.taskmanagement.services
 
         public void AddTaskDefinition(TaskDefinition taskDefinition)
         {
-            Assert.IsFalse (taskDefinition.id.IsValid (), "Task definition already has a valid Id, attempting to add duplicates!");
+            ErrorHandling.AssertIsFalse(taskDefinition.id.IsValid (), "Task definition already has a valid Id, attempting to add duplicates!");
 
             Id newTaskId = this.idService.GenerateNewTaskId ();
             taskDefinition.id = newTaskId;
@@ -46,11 +45,14 @@ namespace game.taskmanagement.services
 
         public void RemoveTaskDefinition(Id taskId)
         {
-            Assert.IsTrue (taskId.IsValid (), "Task Id is invalid!");
-            Assert.IsTrue (this.taskDefinitions.ContainsKey (taskId), "Task Id not found!");
+            if (!taskId.AssertIsValid ())
+                return;
+
+            if (!this.AssertContainsTaskId (taskId))
+                return;
 
             TaskDefinition definition = this.taskDefinitions[taskId];
-            Assert.IsNotNull (definition, "Task definition is null!");
+            ErrorHandling.AssertIsNotNull (definition, "Task definition is null!");
 
             definition.id = Id.INVALID;
             this.taskDefinitions.Remove (taskId);
@@ -58,15 +60,19 @@ namespace game.taskmanagement.services
 
         public void UpdateTaskDefinition(Id taskId, TaskDefinition taskDefinition)
         {
-            Assert.IsTrue (taskId.IsValid (), "Task Id is invalid!");
-            Assert.IsTrue (this.taskDefinitions.ContainsKey (taskId), "Task Id not found!");
+            if (!taskId.AssertIsValid ())
+                return;
+
+            if (!this.AssertContainsTaskId (taskId))
+                return;
 
             this.taskDefinitions[taskId] = taskDefinition;
         }
 
         public void UpdateOrAddTaskDefinition(Id taskId, TaskDefinition taskDefinition)
         {
-            Assert.IsTrue (taskId.IsValid (), "Task Id is invalid!");
+            if (!taskId.AssertIsValid ())
+                return;
 
             if (this.taskDefinitions.ContainsKey(taskId))
             {
@@ -80,7 +86,8 @@ namespace game.taskmanagement.services
 
         public TaskDefinition GetTaskDefinition(Id taskId)
         {
-            Assert.IsTrue (taskId.IsValid (), "Task Id is invalid!");
+            if (!taskId.AssertIsValid ())
+                return null;
 
             if (this.taskDefinitions.ContainsKey (taskId))
             {
@@ -88,6 +95,14 @@ namespace game.taskmanagement.services
             }
 
             return null;
+        }
+
+        bool AssertContainsTaskId(Id taskId)
+        {
+            bool condition = this.taskDefinitions.ContainsKey (taskId);
+            ErrorHandling.AssertIsTrue (condition, "Task Id not found!");
+
+            return condition;
         }
     }
 }

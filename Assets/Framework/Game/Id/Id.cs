@@ -21,6 +21,14 @@ namespace framework.id
             return !this.Equals (INVALID);
         }
 
+        public bool AssertIsValid()
+        {
+            bool condition = this.IsValid ();
+            errorhandling.ErrorHandling.AssertIsTrue (condition, "Id is invalid!");
+
+            return condition;
+        }
+
         public override bool Equals(object obj)
         {
             Id other = obj as Id;

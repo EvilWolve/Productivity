@@ -70,7 +70,7 @@ namespace testing.game.taskmanagement
             this.taskLibrary.AddTaskDefinition (definition);
             this.taskLibrary.AddTaskDefinition (definition);
 
-            LogAssert.Expect (LogType.Assert, "Task definition already has a valid Id, attempting to add duplicates!");
+            LogAssert.Expect (this.logType, "Task definition already has a valid Id, attempting to add duplicates!");
         }
 
         [Test]
@@ -108,7 +108,7 @@ namespace testing.game.taskmanagement
 
             this.taskLibrary.UpdateTaskDefinition (definition.id, definition);
 
-            LogAssert.Expect (LogType.Assert, "Task Id not found!");
+            LogAssert.Expect (this.logType, "Task Id not found!");
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace testing.game.taskmanagement
 
             this.taskLibrary.UpdateTaskDefinition (definition.id, definition);
 
-            LogAssert.Expect (LogType.Assert, "Task Id is invalid!");
+            LogAssert.Expect (this.logType, "Id is invalid!");
         }
 
         [Test]
@@ -140,7 +140,7 @@ namespace testing.game.taskmanagement
                 id = definition.id
             };
 
-            this.taskLibrary.UpdateTaskDefinition (newDefinition.id, newDefinition);
+            this.taskLibrary.UpdateOrAddTaskDefinition (newDefinition.id, newDefinition);
 
             TaskDefinition fetchedTaskDefinition = this.taskLibrary.GetTaskDefinition (definition.id);
 
@@ -159,26 +159,12 @@ namespace testing.game.taskmanagement
                 id = newId
             };
 
-            this.taskLibrary.UpdateTaskDefinition (newDefinition.id, newDefinition);
+            this.taskLibrary.UpdateOrAddTaskDefinition (newDefinition.id, newDefinition);
 
             TaskDefinition fetchedTaskDefinition = this.taskLibrary.GetTaskDefinition (newId);
 
             Assert.IsNotNull (fetchedTaskDefinition);
             Assert.AreEqual (newDefinition.name, fetchedTaskDefinition.name);
-        }
-
-        [Test]
-        public void TryUpdateOrAddTaskDefinitionWithNonExistentId()
-        {
-            TaskDefinition definition = new TaskDefinition ()
-            {
-                name = "New",
-                id = new Id (1)
-            };
-
-            this.taskLibrary.UpdateOrAddTaskDefinition (definition.id, definition);
-
-            LogAssert.Expect (LogType.Assert, "Task Id not found!");
         }
 
         [Test]
@@ -191,7 +177,7 @@ namespace testing.game.taskmanagement
 
             this.taskLibrary.UpdateOrAddTaskDefinition (definition.id, definition);
 
-            LogAssert.Expect (LogType.Assert, "Task Id is invalid!");
+            LogAssert.Expect (this.logType, "Id is invalid!");
         }
 
         [Test]
@@ -206,7 +192,7 @@ namespace testing.game.taskmanagement
             this.taskLibrary.RemoveTaskDefinition (definition.id);
             this.taskLibrary.GetTaskDefinition (definition.id);
 
-            LogAssert.Expect (LogType.Assert, "Task Id is invalid!");
+            LogAssert.Expect (this.logType, "Id is invalid!");
         }
 
         [Test]
@@ -218,9 +204,9 @@ namespace testing.game.taskmanagement
                 id = new Id (1)
             };
 
-            this.taskLibrary.UpdateOrAddTaskDefinition (definition.id, definition);
+            this.taskLibrary.RemoveTaskDefinition (definition.id);
 
-            LogAssert.Expect (LogType.Assert, "Task Id not found!");
+            LogAssert.Expect (this.logType, "Task Id not found!");
         }
 
         [Test]
@@ -231,17 +217,17 @@ namespace testing.game.taskmanagement
                 name = "New"
             };
 
-            this.taskLibrary.UpdateOrAddTaskDefinition (definition.id, definition);
+            this.taskLibrary.RemoveTaskDefinition (definition.id);
 
-            LogAssert.Expect (LogType.Assert, "Task Id is invalid!");
+            LogAssert.Expect (this.logType, "Id is invalid!");
         }
 
         [Test]
         public void TryGetTaskDefinitionWithNonExistentId()
         {
-            this.taskLibrary.GetTaskDefinition (new Id(1));
+            TaskDefinition missingTask = this.taskLibrary.GetTaskDefinition (new Id(1));
 
-            LogAssert.Expect (LogType.Assert, "Task Id not found!");
+            Assert.IsNull (missingTask, "Found task even though we shouldn't have!");
         }
 
         [Test]
@@ -249,7 +235,7 @@ namespace testing.game.taskmanagement
         {
             this.taskLibrary.GetTaskDefinition (Id.INVALID);
 
-            LogAssert.Expect (LogType.Assert, "Task Id is invalid!");
+            LogAssert.Expect (this.logType, "Id is invalid!");
         }
     }
 }

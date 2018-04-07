@@ -2,9 +2,18 @@
 // Creation Date:	05/04/2018
 
 using NUnit.Framework;
+using UnityEngine;
 
-public class BaseTest
+namespace testing
 {
+    public class BaseTest
+    {
+#if USE_ASSERTIONS
+    protected LogType logType = LogType.Assert;
+#else
+    protected LogType logType = LogType.Error;
+#endif
+
     bool wasRaisingExceptions;
 
     [SetUp]
@@ -19,4 +28,5 @@ public class BaseTest
     {
         UnityEngine.Assertions.Assert.raiseExceptions = this.wasRaisingExceptions;
     }
+}
 }
